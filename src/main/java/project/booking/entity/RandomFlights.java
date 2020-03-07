@@ -1,6 +1,6 @@
 package project.booking.entity;
 
-import az.company.project.booking.enums.ArrivalCity;
+import project.booking.enums.ArrivalCity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
