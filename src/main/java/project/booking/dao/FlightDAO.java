@@ -1,5 +1,6 @@
 package project.booking.dao;
 
+
 import project.booking.entity.Flight;
 import project.booking.entity.User;
 
@@ -13,7 +14,7 @@ public class FlightDAO {
 
     public class UserDAO implements DAO<Flight> {
         Map<Integer, Flight> flights= new HashMap<>();
-        File userFile= new File("users.txt");
+        File flightsFile= new File("flights.txt");
         @Override
         public Flight get(int id) {
             return flights.get(id);
@@ -26,58 +27,36 @@ public class FlightDAO {
 
         @Override
         public void create(Flight flight) {
-
-        }
-
-        @Override
-        public void delete(int id) {
-
-        }
-
-        @Override
-        public void Write() throws FileNotFoundException {
-
-        }
-
-        @Override
-        public void Read() {
-
-        }
-
-    }
-
-        @Override
-        public void create(Flight flight) {
             flights.put(flight.id, flight);
         }
 
         @Override
-        public void delete(int id) {
-            users.remove(id);
+        public void delete(int id){
+            flights.remove(id);
             Write();
         }
+
         @Override
-        public void Write(){
-            try( FileOutputStream fos= new FileOutputStream(userFile) ) {
+        public void Write() {
+            try(FileOutputStream fos= new FileOutputStream(flightsFile)){
                 ObjectOutputStream oos= new ObjectOutputStream(fos);
-                oos.writeObject(users);
-            }catch (IOException ex){
-                System.out.println("No file found");
+                oos.writeObject(flights);
+            }
+            catch (IOException ex){
+                System.out.println("Something went wrong, file is not found");;
             }
         }
+
         @Override
         public void Read() {
-            try( FileInputStream fis= new FileInputStream(userFile)){
-                ObjectInputStream ois= new ObjectInputStream(fis);
-                users= (Map<Integer, User>) ois.readObject();
-            }
-            catch (IOException | ClassNotFoundException ex){
-                System.out.println("File from user is not found");
-            }
+           try(FileInputStream fis= new FileInputStream(flightsFile)){
+               ObjectInputStream ois= new ObjectInputStream(fis);
+               flights= (Map<Integer, Flight>) ois.readObject();
+           }
+           catch (IOException | ClassNotFoundException ex){
+               System.out.println("Something went wrong, file from user is not found");
+           }
         }
 
-
     }
-
 }
-

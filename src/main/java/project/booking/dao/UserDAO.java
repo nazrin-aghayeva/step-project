@@ -48,6 +48,4 @@ public class UserDAO implements DAO<User> {
             System.out.println("File from user is not found");
         }
     }
-
-
 }
