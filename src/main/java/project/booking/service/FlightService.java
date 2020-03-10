@@ -1,4 +1,6 @@
 package project.booking.service;
 
-public class FlightService {
+
+public interface FlightService {
+
 }
