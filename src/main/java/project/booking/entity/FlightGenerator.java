@@ -18,6 +18,8 @@ public class FlightGenerator {
 
     public List<Flight> generateFlights(int howMany) {
         List<Flight> flights = new ArrayList<>();
+        Integer id;
+        Integer emptySeats;
         String flightNo;
         Airline airline;
         int capacity;
@@ -36,7 +38,7 @@ public class FlightGenerator {
             departure = generateDateTime(30);
             arrival = departure.plusHours(randomIntegerBetween(2, 8));
 
-            flights.add(new Flight(flightNo, airline, capacity, origin, departure, destination, arrival));
+            flights.add(new Flight(id, emptySeats, flightNo, airline, capacity, origin, departure, destination, arrival));
         }
 
         return flights;

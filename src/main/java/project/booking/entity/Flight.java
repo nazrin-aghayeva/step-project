@@ -1,16 +1,33 @@
 package project.booking.entity;
 
+import project.booking.enums.Airline;
+import project.booking.enums.ArrivalCity;
+import project.booking.enums.DepartureCity;
+
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Flight {
-    public final Integer id;
-    public final int emptySeats;
+    Integer id;
+    String flightNo;
+    Airline airline;
+    int capacity;
+    ArrivalCity origin;
+    DepartureCity destination;
+    LocalDateTime departure, arrival;
+    int emptySeats;
 
 
-    public Flight(City src, City dest, Integer id, int emptySeats) {
-
+    public Flight(Integer id, int emptySeats, String flightNo, Airline airline, int capacity, ArrivalCity origin, LocalDateTime departure, DepartureCity destination, LocalDateTime arrival) {
         this.id = id;
         this.emptySeats = emptySeats;
+        this.airline= airline;
+        this.flightNo= flightNo;
+        this.capacity= capacity;
+        this.origin= origin;
+        this.departure= departure;
+        this.destination= destination;
+        this.arrival= arrival;
     }
 
     @Override
