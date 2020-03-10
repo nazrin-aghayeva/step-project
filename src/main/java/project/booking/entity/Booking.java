@@ -10,7 +10,7 @@ public class Booking {
     public final Integer bookingId;
     private final LocalDateTime date = LocalDateTime.now();
     public final Flight flight;
-//    public final User user;
+    public  User user;
 //    public final Passenger passenger;
 
     public Booking(Flight flight,  int id) {
