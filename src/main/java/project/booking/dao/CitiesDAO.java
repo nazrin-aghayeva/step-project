@@ -1,4 +1,4 @@
 package project.booking.dao;
 
-public class FlightDAO {
+public class CitiesDAO {
 }

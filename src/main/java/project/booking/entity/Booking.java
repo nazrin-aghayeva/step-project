@@ -1,5 +1,6 @@
 package project.booking.entity;
 
+<<<<<<< HEAD
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -100,4 +101,7 @@ public class Booking {
     public int hashCode() {
         return Objects.hash(bookingId, flight, user);
     }
+=======
+public class Booking {
+>>>>>>> origin/master
 }

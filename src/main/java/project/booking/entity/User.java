@@ -1,80 +1,32 @@
 package project.booking.entity;
 
-import java.io.Serializable;
-import java.util.HashSet;
+import java.util.Objects;
 
-public class User  {
+public class User {
+    public final String name;
+    public final String surname;
 
-    static int counter = 1;
-
-    private int id;
-    private String username;
-    private String password;
-    private String firstName;
-    private String lastName;
-    private int age;
-    private String email;
-    private HashSet<Booking> bookings;
-
-    public User(int id, String username) {
-        this.id = counter++;
-        this.username = username;
+    public User(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
     }
 
-    public User(String username, String password, String firstName, String lastName, String email) {
-        this.id = counter++;
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(name, user.name) &&
+                Objects.equals(surname, user.surname);
     }
 
-    public String getEmail() {
-        return email;
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, surname);
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFullName() {
-        return firstName + " " + lastName;
-    }
-
-    public Passenger getAsPassenger(){
-        return new Passenger(firstName, lastName);
+    @Override
+    public String toString() {
+        return name+" "+surname;
     }
 }
