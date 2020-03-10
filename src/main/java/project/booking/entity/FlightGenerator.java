@@ -32,8 +32,8 @@ public class FlightGenerator {
             flightNo = generateFlightNo(airline);
             capacity = randomIntegerBetween(150, 200) / 10 * 10;
             origin = generateArrivalCity();
-            id=randomIntegerBetween(150,200)/10*10;
-            emptySeats=randomIntegerBetween(50,200)/10*10;
+            id=randomIntegerBetween(152,202)/10*10;
+            emptySeats=randomIntegerBetween(52,202)/10*10;
             do {
                 destination = DepartureCity.KIEV;
             } while (origin.equals(destination));
