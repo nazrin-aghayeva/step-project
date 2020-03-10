@@ -8,8 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FlightDAO {
-        public class UserDAO implements DAO<Flight> {
+        public class FlightDAO implements DAO<Flight> {
             Map<Integer, Flight> flights= new HashMap<>();
             File flightsFile= new File("flights.txt");
             @Override
@@ -56,4 +55,4 @@ public class FlightDAO {
             }
 
         }
-}
+
