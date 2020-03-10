@@ -1,76 +1,31 @@
 package project.booking.entity;
 
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Formatter;
 import java.util.Objects;
 
 public class Booking {
-
-
-
-    private Integer bookingId;
+    public final Integer bookingId;
     private final LocalDateTime date = LocalDateTime.now();
-    private Flight flight;
-    private User user;
-    private Passenger passenger;
+    public final Flight flight;
+//    public final User user;
+//    public final Passenger passenger;
 
-    public Booking(Flight flight, Passenger passenger, User user, int id) {
+    public Booking(Flight flight,  int id) {
         this.bookingId = id;
         this.flight = flight;
-        this.user = user;
-        this.passenger = passenger;
+
     }
 
-    public Booking(Flight flight, Passenger passenger, int id){
-        this.bookingId = id;
-        this.flight = flight;
-        this.passenger = passenger;
-    }
-
-    public Booking(int flightId, Flight flight, User user){
+    public Booking(int flightId, Flight flight) {
         this.bookingId = flightId;
         this.flight = flight;
-        this.user = user;
+
+
     }
 
-    public int getBookingId() {
-        return bookingId;
-    }
-
-    public void setBookingId(int bookingId) {
-        this.bookingId = bookingId;
-    }
-
-    public Flight getFlight() {
-        return flight;
-    }
-
-    public void setFlight(Flight flight) {
-        this.flight = flight;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public Passenger getPassenger() {
-        return passenger;
-    }
-
-    public void setPassenger(Passenger passenger) {
-        this.passenger = passenger;
-    }
 
     @Override
     public String toString() {
@@ -101,7 +56,4 @@ public class Booking {
     public int hashCode() {
         return Objects.hash(bookingId, flight, user);
     }
-=======
-public class Booking {
->>>>>>> origin/master
 }
