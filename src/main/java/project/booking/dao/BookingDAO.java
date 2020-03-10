@@ -49,7 +49,7 @@ public class BookingDAO implements DAO<Booking> {
             ObjectInputStream ois = new ObjectInputStream(fis);
             bookings = (Map<Integer, Booking>) ois.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Smth went wrong file is not loaded");
+            System.out.println("Smth went wrong file from user is not loaded");
         }
     }
 }

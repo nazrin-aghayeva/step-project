@@ -16,14 +16,11 @@ public class Booking {
     public Booking(Flight flight,  int id) {
         this.bookingId = id;
         this.flight = flight;
-
     }
 
     public Booking(int flightId, Flight flight) {
         this.bookingId = flightId;
         this.flight = flight;
-
-
     }
 
 
