@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Flight {
-    Integer id;
+    public Integer id;
     String flightNo;
     Airline airline;
     int capacity;
