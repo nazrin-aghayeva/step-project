@@ -8,14 +8,14 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Flight {
-    public Integer id;
-    String flightNo;
-    Airline airline;
-    int capacity;
-    ArrivalCity origin;
-    DepartureCity destination;
-    LocalDateTime departure, arrival;
-    int emptySeats;
+    public final Integer id;
+    public final String flightNo;
+    public final Airline airline;
+    public final int capacity;
+    public final ArrivalCity origin;
+    public final DepartureCity destination;
+    public final LocalDateTime departure, arrival;
+    public final int emptySeats;
 
 
     public Flight(Integer id, int emptySeats, String flightNo, Airline airline, int capacity, ArrivalCity origin, LocalDateTime departure, DepartureCity destination, LocalDateTime arrival) {
