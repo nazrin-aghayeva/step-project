@@ -1,6 +1,6 @@
 package project.booking.entity;
 
-<<<<<<< HEAD
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
