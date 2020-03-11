@@ -19,10 +19,10 @@ import java.util.stream.Collectors;
 
 public class Validator {
 
-    private final FlightController flightController;
-    private final BookingController bookingController;
-    private final UserController userController;
-    private final Console console;
+    public final FlightController flightController;
+    public final BookingController bookingController;
+    public final UserController userController;
+    public final Console console;
 
     public Validator(FlightController flightController, BookingController bookingController, UserController userController, Console console) {
         this.flightController = flightController;

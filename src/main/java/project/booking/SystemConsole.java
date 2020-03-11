@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class SystemConsole implements Console {
 
-    private final Scanner in = new Scanner(System.in);
-    private final PrintStream out = System.out;
+    public final Scanner in = new Scanner(System.in);
+    public final PrintStream out = System.out;
 
     @Override
     public void printLn(String s) {
