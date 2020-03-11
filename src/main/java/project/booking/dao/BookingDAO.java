@@ -1,55 +1,77 @@
 package project.booking.dao;
 
+import project.booking.dao.DAO;
 import project.booking.entity.Booking;
 import project.booking.entity.Flight;
 import project.booking.entity.User;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class BookingDAO implements DAO<Booking> {
-    private Map<Integer, Booking> bookings = new HashMap<>();
-    File bookingFile= new File("booking.txt");
 
-    @Override
-    public Booking get(int id) {
-        return bookings.get(id);
+
+    private File file;
+    private List<Booking> bookings;
+    private DAOBin<Booking> io;
+
+    public BookingDAO() {
+        this(new File("./db", "bookings.txt"));
     }
 
-    @Override
-    public List<Booking> getAll() {
-        return new ArrayList<>(bookings.values());
-    }
-
-    @Override
-    public void create(Booking booking) {
-        bookings.put(booking.bookingId,booking);
-    }
-
-    @Override
-    public void delete(int id) {
-        bookings.remove(id);
-        Write();
-    }
-
-    @Override
-    public void Write() {
-        try(FileOutputStream fos= new FileOutputStream(bookingFile)){
-            ObjectOutputStream oos= new ObjectOutputStream(fos);
-            oos.writeObject(bookings);
+    public BookingDAO(File file) {
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        catch (IOException ex){
-            System.out.println("Smth went wrong file is not found");
-        }
+        this.file = file;
+        this.bookings = new ArrayList<>();
+        this.io = new DAOBin<>(file, bookings);
     }
 
     @Override
-    public void Read() {
-        try (FileInputStream fis = new FileInputStream(bookingFile)) {
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            bookings = (Map<Integer, Booking>) ois.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Smth went wrong file from user is not loaded");
+    public List<Booking> findAll() {
+        return bookings;
+    }
+
+    @Override
+    public Optional<Booking> findById(int id) {
+        return bookings.stream().filter(booking -> booking.bookingId == id).findFirst();
+    }
+
+    @Override
+    public boolean create(Booking booking) {
+        if (booking == null) throw new IllegalArgumentException("Null booking.");
+        if (bookings.contains(booking)) return false;
+        bookings.add(booking);
+        booking.flight.addPassenger(booking.passenger);
+        return true;
+    }
+
+    @Override
+    public boolean remove(int id) {
+        Optional<Booking> chosen = bookings.stream()
+                .filter(booking -> booking.bookingId == id)
+                .findFirst();
+        if (chosen.isPresent()) {
+            Flight flight = chosen.get().flight;
+            flight.removePassenger(chosen.get().passenger);
+            boolean removed = bookings.remove(chosen.get());
+            return removed;
         }
+        return false;
+    }
+
+
+    public void load() {
+        io.load();
+    }
+
+    public void save() {
+        io.save();
     }
 }

@@ -4,48 +4,70 @@ import project.booking.entity.User;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class UserDAO implements DAO<User> {
-    Map<Integer, User> users= new HashMap<>();
-    File userFile= new File("users.txt");
-    @Override
-    public User get(int id) {
-        User user= users.get(id);
-        return user;
+
+    private File file;
+    private List<User> users;
+    private DAOBin<User> io;
+
+    public UserDAO() {
+        this(new File("./db", "users.txt"));
+    }
+
+    public UserDAO(File file) {
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        this.file = file;
+        users = new ArrayList<>();
+        this.io = new DAOBin<>(file, users);
     }
 
     @Override
-    public List<User> getAll() {
-        return new ArrayList<>(users.values());
+    public List<User> findAll() {
+        return users;
     }
 
     @Override
-    public void create(User user) {
-        users.put(user.id, user);
+    public Optional<User> findById(int id) {
+        return users.stream().filter(user -> user.id == id).findFirst();
     }
 
     @Override
-    public void delete(int id) {
-        users.remove(id);
-        Write();
+    public boolean create(User user) {
+        if (user == null) throw new IllegalArgumentException("Null user.");
+        if (getAllUsername().contains(user.username)) return false;
+        users.add(user);
+        return true;
     }
-    @Override
-    public void Write(){
-        try( FileOutputStream fos= new FileOutputStream(userFile) ) {
-            ObjectOutputStream oos= new ObjectOutputStream(fos);
-            oos.writeObject(users);
-        }catch (IOException ex){
-            System.out.println("No file found");
-        }
+
+    public Set<String> getAllUsername() {
+        return users.stream().map(user -> user.username).collect(Collectors.toSet());
     }
+
     @Override
-    public void Read() {
-        try( FileInputStream fis= new FileInputStream(userFile)){
-            ObjectInputStream ois= new ObjectInputStream(fis);
-            users= (Map<Integer, User>) ois.readObject();
+    public boolean remove(int id) {
+        Optional<User> found = users.stream().filter(user -> user.id == id).findFirst();
+        if(found.isPresent()){
+            return users.remove(found.get());
         }
-        catch (IOException | ClassNotFoundException ex){
-            System.out.println("File from user is not found");
-        }
+
+        return false;
+    }
+
+    @Override
+    public void load() {
+        io.load();
+    }
+
+    @Override
+    public void save() {
+        io.save();
     }
 }

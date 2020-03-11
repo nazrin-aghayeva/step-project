@@ -1,4 +1,4 @@
-package project.booking.enums;
+package project.booking.entity;
 
 import java.util.Random;
 

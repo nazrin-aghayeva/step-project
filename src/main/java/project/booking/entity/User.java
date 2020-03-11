@@ -1,35 +1,33 @@
 package project.booking.entity;
 
+import java.util.HashSet;
 import java.util.Objects;
 
 public class User {
-    public final String name;
-    public final String surname;
-    public final Integer id;
 
-    public User(String name, String surname, int id) {
-        this.name = name;
-        this.surname = surname;
-        this.id=id;
+    static int counter = 1;
+
+    public int id;
+    public String username;
+    public String password;
+    public String firstName;
+    public String lastName;
+
+
+    public User(String username, String password, String firstName, String lastName) {
+        this.id = counter++;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(name, user.name) &&
-                Objects.equals(surname, user.surname);
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, surname);
-    }
-
-    @Override
-    public String toString() {
-        return name.toUpperCase()+" "+surname.toUpperCase();
+    public Passenger getAsPassenger() {
+        return new Passenger(firstName, lastName);
     }
 
 }

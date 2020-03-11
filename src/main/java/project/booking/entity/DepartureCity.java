@@ -1,4 +1,4 @@
-package project.booking.enums;
+package project.booking.entity;
 
 public enum DepartureCity {
     KIEV("KBP");

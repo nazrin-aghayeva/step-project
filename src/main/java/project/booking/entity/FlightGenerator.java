@@ -1,10 +1,6 @@
 package project.booking.entity;
 
 
-import project.booking.enums.Airline;
-import project.booking.enums.ArrivalCity;
-import project.booking.enums.DepartureCity;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -18,11 +14,9 @@ public class FlightGenerator {
 
     public List<Flight> generateFlights(int howMany) {
         List<Flight> flights = new ArrayList<>();
-        Integer id;
         Integer emptySeats;
         String flightNo;
         Airline airline;
-        int capacity;
         ArrivalCity origin;
         DepartureCity destination;
         LocalDateTime departure, arrival;
@@ -30,17 +24,15 @@ public class FlightGenerator {
         for (int i = 0; i < howMany; i++) {
             airline = generateAirline();
             flightNo = generateFlightNo(airline);
-            capacity = randomIntegerBetween(150, 200) / 10 * 10;
+            emptySeats = randomIntegerBetween(50, 100) / 10 * 10;
             origin = generateArrivalCity();
-            id=randomIntegerBetween(152,202)/10*10;
-            emptySeats=randomIntegerBetween(52,202)/10*10;
             do {
                 destination = DepartureCity.KIEV;
             } while (origin.equals(destination));
             departure = generateDateTime(30);
             arrival = departure.plusHours(randomIntegerBetween(2, 8));
 
-            flights.add(new Flight(id, emptySeats, flightNo, airline, capacity, origin, departure, destination, arrival));
+            flights.add(new Flight( emptySeats, flightNo, airline,  origin, departure, destination, arrival));
         }
 
         return flights;

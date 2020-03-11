@@ -8,21 +8,17 @@ import java.util.Objects;
 
 public class Booking {
     public final Integer bookingId;
-    private final LocalDateTime date = LocalDateTime.now();
-    public final Flight flight;
-//    public final User user;
-//    public final Passenger passenger;
+    public final LocalDateTime date = LocalDateTime.now();
+    public  Flight flight;
+    public  User user;
+    public Passenger passenger;
 
-    public Booking(Flight flight,  int id) {
-        this.bookingId = id;
+    public Booking(Flight flight, Passenger passenger, User user, int bookingId) {
+        this.bookingId = bookingId;
         this.flight = flight;
+        this.user = user;
+        this.passenger = passenger;
     }
-
-    public Booking(int flightId, Flight flight) {
-        this.bookingId = flightId;
-        this.flight = flight;
-    }
-
 
     @Override
     public String toString() {
@@ -34,10 +30,10 @@ public class Booking {
                 "|", bookingId,
                 "|", user.getFullName(),
                 "|", passenger.getFullName(),
-                "|", flight.getDeparture().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")),
-                "|", flight.getOrigin().toString(),
-                "|", flight.getArrival().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")),
-                "|", flight.getDestination()
+                "|", flight.departure.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")),
+                "|", flight.origin.toString(),
+                "|", flight.arrival.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")),
+                "|", flight.destination
         ).toString();
     }
 

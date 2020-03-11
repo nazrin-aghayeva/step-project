@@ -1,13 +1,14 @@
 package project.booking;
 
-
 import project.booking.controller.BookingController;
 import project.booking.controller.FlightController;
 import project.booking.controller.UserController;
+import project.booking.entity.ArrivalCity;
 import project.booking.entity.Booking;
 import project.booking.entity.Flight;
 import project.booking.enums.Commands;
-
+import project.booking.enums.InputTypes;
+import project.booking.enums.States;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -56,8 +57,6 @@ public class Validator {
             case NAME:
             case SURNAME:
                 return isValidNaming(line);
-            case EMAIL:
-                return isEmail(line);
             case PASSWORD:
                 return isPassword(line);
             case USERNAME:
@@ -94,51 +93,6 @@ public class Validator {
         return true;
     }
 
-    private boolean isEmail(String line) {
-        if (userController.isEmail(line)) {
-            console.printLn("This email has been registered before.");
-            return false;
-        } else if (!line.contains("@")) {
-            console.printLn("Invalid email address");
-            return false;
-        } else if(line.substring(line.indexOf("@")).length() < 4){
-            console.printLn("Invalid email address");
-            return false;
-        }
-
-        String symbols = "_-.";
-        String[] parts = line.split("@");
-        String prefix = parts[0];
-        String domain = parts[1];
-
-        for (int i = 0; i < prefix.length(); i++) {
-            char ch = prefix.charAt(i);
-            if (Character.isLetter(ch)) continue;
-            else if (Character.isDigit(ch)) continue;
-            else if (symbols.contains(ch + "")) continue;
-            else {
-                console.printLn("Invalid email address.");
-                return false;
-            }
-        }
-
-        if (!domain.contains(".")) {
-            console.printLn("Invalid email address");
-            return false;
-        }
-        for (int i = 0; i < domain.length(); i++) {
-            char ch = domain.charAt(i);
-            if (Character.isLetter(ch)) continue;
-            else if (Character.isDigit(ch)) continue;
-            else if (ch == '-' || ch == '.') continue;
-            else {
-                console.printLn("Invalid email address.");
-                return false;
-            }
-        }
-
-        return true;
-    }
 
     private boolean isPassword(String line) {
         if (line.length() < 8) {
@@ -166,8 +120,8 @@ public class Validator {
     }
 
     private boolean isValidCity(String line) {
-        if (!Airport.isValid(line)) console.printLn("Invalid City.");
-        return Airport.isValid(line);
+        if (!ArrivalCity.isValid(line)) console.printLn("Invalid City.");
+        return ArrivalCity.isValid(line);
     }
 
     private boolean isFlightNo(String line) {

@@ -1,4 +1,4 @@
-package project.booking;
+package project.booking.enums;
 
 
 public enum InputTypes {
@@ -10,7 +10,7 @@ public enum InputTypes {
     SURNAME,
     PASSWORD,
     USERNAME,
-    EMAIL,
+
 
     CITY,
     INTEGER,
