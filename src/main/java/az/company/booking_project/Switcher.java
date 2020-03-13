@@ -10,6 +10,7 @@ import az.company.booking_project.entities.User;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -78,12 +79,12 @@ private DisplayMenu displayMenu =new DisplayMenu();
                             System.out.println("Arrival city: ");
                             String city = scanner.next().toUpperCase();
 
-                            System.out.println("Date (YYYY-MM-DD):");
+                            System.out.println("Date (yyyy-MM-DD):");
                             LocalDate date = LocalDate.parse(scanner.next());
 
                             System.out.println("Number of tickets: ");
                             tickets = scanner.nextInt();
-                            flightController.search(new Flight(ArrivalCity.valueOf(city), date));
+                            System.out.println(flightController.filteredFlights(ArrivalCity.get(city),date));
                         } catch (InputMismatchException im) {
                             System.out.println("Smthn go wrong");
                             command2 = false;
