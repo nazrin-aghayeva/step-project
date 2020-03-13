@@ -1,4 +1,4 @@
-package booking_project;
+package az.company.booking_project;
 
 
 import az.company.booking_project.controller.BookingController;

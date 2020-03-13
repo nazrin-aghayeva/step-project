@@ -1,4 +1,4 @@
-package booking_project;
+package az.company.booking_project;
 
 import java.io.IOException;
 

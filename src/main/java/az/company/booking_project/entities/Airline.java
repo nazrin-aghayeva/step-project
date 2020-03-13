@@ -1,4 +1,4 @@
-package booking_project.entities;
+package az.company.booking_project.entities;
 
 import java.util.Random;
 

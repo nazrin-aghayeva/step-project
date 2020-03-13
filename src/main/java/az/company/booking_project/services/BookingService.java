@@ -1,4 +1,4 @@
-package booking_project.services;
+package az.company.booking_project.services;
 
 
 import az.company.booking_project.Dao.BookingDao;
