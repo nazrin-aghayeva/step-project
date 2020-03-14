@@ -4,12 +4,14 @@ package az.company.booking_project.Dao;
 import az.company.booking_project.entities.Database;
 import az.company.booking_project.entities.Flight;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 public class FlightDao implements Dao<Flight> {
     private Database database = new Database();
+    File fileFlights = new File("flights.txt");
 
     @Override
     public List<Flight> getAll() throws IOException, ClassNotFoundException {
@@ -25,6 +27,7 @@ public class FlightDao implements Dao<Flight> {
 
     @Override
     public Optional<Flight> getById(int id) throws IOException, ClassNotFoundException {
+        if(fileFlights.contains(id));
         return database.getAllFlights()
                 .stream()
                 .filter(flight -> flight.getId() == id)

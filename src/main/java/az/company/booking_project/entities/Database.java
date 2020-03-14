@@ -1,5 +1,7 @@
 package az.company.booking_project.entities;
 
+import az.company.booking_project.Exceptions.FileException;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +25,18 @@ public class Database implements Serializable {
 
 
 
-    public List<Flight> readFromFileFlights() throws IOException, ClassNotFoundException {
-        File file = new File("flights.txt");
-        FileInputStream fis = new FileInputStream(file);
+    public List<Flight> readFromFileFlights()  {
+        try{
+        File fileFlights = new File("flights.txt");
+        FileInputStream fis = new FileInputStream(fileFlights);
         ObjectInputStream ois = new ObjectInputStream(fis);
         flightList = (List<Flight>) ois.readObject();
         ois.close();
-        fis.close();
+        fis.close();}
+        catch (IOException| ClassNotFoundException e){
+            throw new FileException("File is not found");
+
+        }
         return flightList;
     }
     public List<Booking> readFromFileMyBookings(){
@@ -41,28 +48,32 @@ public class Database implements Serializable {
             ois.close();
             fis.close();
         } catch (IOException | ClassNotFoundException e) {
-            throw new RuntimeException();
+            throw new FileException("File is not found");
         }
         return bookingList;
     }
     public  boolean writeToFileBooking(){
 
         try {
-            File file=new File("bookings.txt");
-            FileOutputStream fos=new FileOutputStream(file);
-            ObjectOutputStream oos=new ObjectOutputStream(fos);
+            File file = new File("bookings.txt");
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(bookingList);
             oos.close();
             fos.close();
             return true;
-        }catch (Exception io){
-            io.printStackTrace();
-            System.out.println(io.getMessage());
-            throw new RuntimeException();
         }
+        catch (IOException e) {
+            throw new FileException("File is not found");
+        }
+//        }catch (Exception io){
+//            io.printStackTrace();
+//            System.out.println(io.getMessage());
+//            throw new RuntimeException();
+//        }
     }
 
-    public List<Flight> getAllFlights() throws IOException, ClassNotFoundException {
+    public List<Flight> getAllFlights() {
         return readFromFileFlights();
 
     }
@@ -93,8 +104,8 @@ public class Database implements Serializable {
             FileInputStream fis=new FileInputStream(file);
             ObjectInputStream ois=new ObjectInputStream(fis);
             userlist= (List<User>) ois.readObject();
-        }catch (Exception e){
-            throw new RuntimeException();
+        }catch (IOException | ClassNotFoundException e) {
+            throw new FileException("File is not found");
         }
         return userlist;
     }
@@ -107,10 +118,8 @@ public class Database implements Serializable {
             oos.close();
             fos.close();
             return true;
-        }catch (Exception io){
-            io.printStackTrace();
-            System.out.println(io.getMessage());
-            throw new IllegalArgumentException("something went wrong");
+        }catch (IOException e) {
+            throw new FileException("File is not found");
         }
     }
 }
