@@ -19,7 +19,7 @@ public class FlightDao implements Dao<Flight> {
     @Override
     public Optional<Flight> get(Flight flight) throws IOException, ClassNotFoundException {
         return database.getAllFlights().stream()
-                .filter(flight1 -> flight1.getFrom().name().equals(flight.getFrom().name()) && flight1.getDate().equals(flight.getDate()))
+                .filter(flight1 -> flight1.getTo().name().equals(flight.getTo().name()) && flight1.getDate().equals(flight.getDate()))
                 .findAny();
     }
 
