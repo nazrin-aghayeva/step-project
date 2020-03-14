@@ -89,10 +89,10 @@ private DisplayMenu displayMenu =new DisplayMenu();
                             System.out.println("Smthn go wrong");
                             command2 = false;
                         }
-//                        } catch (Exception ex) {
-//                            System.out.println("Date format is not true!");
-//                            command2 = false;
-//                        }
+                        catch (Exception ex) {
+                            System.out.println("Date format is not true!");
+                            command2 = false;
+                        }
 
                         while (command2) {
                             displayMenu.book();
