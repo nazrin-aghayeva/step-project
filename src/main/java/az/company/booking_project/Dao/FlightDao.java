@@ -27,7 +27,7 @@ public class FlightDao implements Dao<Flight> {
 
     @Override
     public Optional<Flight> getById(int id) throws IOException, ClassNotFoundException {
-        if(fileFlights.contains(id));
+//        if(fileFlights.contains(id));
         return database.getAllFlights()
                 .stream()
                 .filter(flight -> flight.getId() == id)
