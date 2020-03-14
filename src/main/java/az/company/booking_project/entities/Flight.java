@@ -9,18 +9,16 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Flight implements Serializable {
+    private static Random random= new Random();
+
     private int id;
     private Airline airline;
     private String flightNo;
     private DepartureCity from;
-
-    public ArrivalCity getTo() {
-        return to;
-    }
-
     private ArrivalCity to;
     private LocalDateTime departure_time;
     private LocalDateTime arrival_time;
@@ -29,6 +27,13 @@ public class Flight implements Serializable {
     private int empty_seats;
     private static int count = 0;
     static List<Flight> flights = new ArrayList<>();
+
+    public Flight(ArrivalCity valueOf, LocalDateTime atStartOfDay) {
+    }
+
+    public ArrivalCity getTo() {
+        return to;
+    }
 
     public Flight(int id,Airline airline,String flightNo, DepartureCity from, ArrivalCity to, int empty_seats, LocalDateTime departure_time) {
         this.id = id;
@@ -60,7 +65,8 @@ public class Flight implements Serializable {
                     DepartureCity.KIEV,
                     ArrivalCity.getRandomCity(),
                     (int) (Math.random() * 100),
-                    LocalDateTime.now().plusHours((long) (Math.random()*10)).plusMinutes((long) (Math.random()*20)).truncatedTo(ChronoUnit.MINUTES)
+                    LocalDateTime.of(LocalDate.now(),LocalTime.of(random.nextInt(24), (random.nextInt(60)/30)*30))
+//                    LocalDateTime.now().plusHours((long) (Math.random()*10)).plusMinutes((long) (Math.random()*20)).truncatedTo(ChronoUnit.MINUTES)
                     );
             flights.add(flight);
         }
@@ -83,11 +89,6 @@ public class Flight implements Serializable {
         }
     }
 
-
-
-    public Flight(ArrivalCity to, LocalDate arrival_date) {
-        this.to = ArrivalCity.getRandomCity();
-    }
 
     public int getId() {
         return id;
@@ -114,9 +115,9 @@ public class Flight implements Serializable {
                 "|", flightNo,
                 "|", airline,
                 "|", from,
-                "|", departure_time.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm")),
+                "|", departure_time.format(DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm")),
                 "|", to,
-                "|", arrival_time.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm")),
+                "|", arrival_time.format(DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm")),
                 "|", empty_seats,
                 "|"
         ).toString();

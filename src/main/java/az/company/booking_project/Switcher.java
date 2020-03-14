@@ -11,6 +11,7 @@ import az.company.booking_project.entities.User;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -76,22 +77,22 @@ private DisplayMenu displayMenu =new DisplayMenu();
                         boolean command2 = true;
                         int tickets = 0;
                         try {
-                            System.out.println("Arrival city: ");
+                            System.out.println("Arrival city:");
                             String city = scanner.next().toUpperCase();
-
-                            System.out.println("Date (yyyy-MM-DD):");
-                            LocalDate date = LocalDate.parse(scanner.next());
-
-                            System.out.println("Number of tickets: ");
+                            System.out.println("Date (mm/dd/yyyy):");
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+                            String date= scanner.next();
+                            System.out.println("Number of tickets:");
                             tickets = scanner.nextInt();
-                            System.out.println(flightController.filteredFlights(ArrivalCity.get(city),date));
+                            flightController.search(new Flight(ArrivalCity.valueOf(city),LocalDate.parse(date, formatter).atStartOfDay()));
                         } catch (InputMismatchException im) {
                             System.out.println("Smthn go wrong");
                             command2 = false;
-                        } catch (Exception ex) {
-                            System.out.println("Date format is not true!");
-                            command2 = false;
                         }
+//                        } catch (Exception ex) {
+//                            System.out.println("Date format is not true!");
+//                            command2 = false;
+//                        }
 
                         while (command2) {
                             displayMenu.book();
