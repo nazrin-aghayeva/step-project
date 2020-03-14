@@ -24,7 +24,8 @@ public enum ArrivalCity {
     LONDON("LHR"),
     AMSTERDAM("NL"),
     MINSK("MSQ"),
-    PARIS("LBG");
+    PARIS("LBG"),
+    MEXICO("ACA");
 
     private final String code;
 

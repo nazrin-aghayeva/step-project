@@ -20,22 +20,15 @@ public class Flight implements Serializable {
     private String flightNo;
     private DepartureCity from;
     private ArrivalCity to;
+    private LocalDate arrival_date;
     private LocalDateTime departure_time;
     private LocalDateTime arrival_time;
-    private LocalDate arrival_date;
-    private LocalDate departure_date;
     private int empty_seats;
     private static int count = 0;
     static List<Flight> flights = new ArrayList<>();
 
-    public Flight(ArrivalCity valueOf, LocalDateTime atStartOfDay) {
-    }
 
-    public ArrivalCity getTo() {
-        return to;
-    }
-
-    public Flight(int id,Airline airline,String flightNo, DepartureCity from, ArrivalCity to, int empty_seats, LocalDateTime departure_time) {
+    public Flight(int id,Airline airline,String flightNo, DepartureCity from, ArrivalCity to, int empty_seats, LocalDateTime departure_time,LocalDateTime arrival_time) {
         this.id = id;
         this.airline=airline;
         this.flightNo=flightNo;
@@ -43,21 +36,21 @@ public class Flight implements Serializable {
         this.to = to;
         this.departure_time= departure_time;
         this.empty_seats = empty_seats;
-         LocalDateTime arrival_time= departure_time.plusHours(ThreadLocalRandom.current().nextInt(2, 6));
+         this.arrival_time=arrival_time;
     }
 
-    public Flight(int id,Airline airline,String flightNo, DepartureCity from, ArrivalCity to, int empty_seats, LocalDateTime departure_time, LocalDateTime arrival_time) {
-        this.id = id;
-        this.airline=airline;
-        this.flightNo=flightNo;
-        this.from = from;
-        this.to = to;
-        this.departure_time= departure_time;
-        this.empty_seats = empty_seats;
-    }
+//    public Flight(int id,Airline airline,String flightNo, DepartureCity from, ArrivalCity to, int empty_seats, LocalDateTime departure_time, LocalDateTime arrival_time) {
+//        this.id = id;
+//        this.airline=airline;
+//        this.flightNo=flightNo;
+//        this.from = from;
+//        this.to = to;
+//        this.departure_time= departure_time;
+//        this.empty_seats = empty_seats;
+//    }
 
     public static void TimeTable() throws IOException {
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 20; i++) {
             Flight flight = new Flight(
                     ++count,
                     Airline.getRandomAirline(),
@@ -65,8 +58,8 @@ public class Flight implements Serializable {
                     DepartureCity.KIEV,
                     ArrivalCity.getRandomCity(),
                     (int) (Math.random() * 100),
-                    LocalDateTime.of(LocalDate.now(),LocalTime.of(random.nextInt(24), (random.nextInt(60)/30)*30))
-//                    LocalDateTime.now().plusHours((long) (Math.random()*10)).plusMinutes((long) (Math.random()*20)).truncatedTo(ChronoUnit.MINUTES)
+                    LocalDateTime.of(LocalDate.now(),LocalTime.of(random.nextInt(24), (random.nextInt(60)/30)*30)),
+                    LocalDateTime.of(LocalDate.now(),LocalTime.of(random.nextInt(24), (random.nextInt(60)/30)*30)).plusHours(ThreadLocalRandom.current().nextInt(2, 6))
                     );
             flights.add(flight);
         }
@@ -94,21 +87,27 @@ public class Flight implements Serializable {
         return id;
     }
 
-    public LocalDateTime getDate() {
-        return departure_time;
+    public LocalDate getDate() {
+        LocalDate dateFromDateTime=arrival_time.toLocalDate();
+       return dateFromDateTime;
     }
 
-    public ArrivalCity getFrom() {
-        return ArrivalCity.getRandomCity();
+    public ArrivalCity getTo() {
+        return to;
     }
 
 
-        @Override
+    public Flight(ArrivalCity to, LocalDateTime arrival_time) {
+        this.to=to;
+        this.arrival_time=arrival_time;
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         Formatter fmt = new Formatter(sb);
 
-            this.arrival_time= departure_time.plusHours(ThreadLocalRandom.current().nextInt(2, 6));
+//            this.arrival_time= departure_time.plusHours(ThreadLocalRandom.current().nextInt(2, 6));
             return fmt.format(
                 "%s %-3s %s %-5s %s %-20s %s %-12s %s %-15s %s %-12s %s %-15s %s %-3s %s",
                 "|", id,

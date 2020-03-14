@@ -7,11 +7,8 @@ import java.io.IOException;
 public class BookingController {
     private BookingService bookingService=new BookingService();
     public void makeBooking(int tickets){
-        if(bookingService.makeBooking(tickets)){
-            System.out.println("Data were saved!");
-        }else {
-            System.out.println("Please try again");
-        }
+        bookingService.makeBooking(tickets);
+
     }
 
     public void showMyBookings() throws IOException, ClassNotFoundException {

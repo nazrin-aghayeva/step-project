@@ -37,6 +37,7 @@ private DisplayMenu displayMenu =new DisplayMenu();
                         System.out.println("Password:");
                         String password = scanner.next();
                         userController.getUser(new User(username, password));
+                        System.out.println("Login successfully.");
                         command1=true;
                     }
                     catch (InputMismatchException e){
@@ -51,7 +52,8 @@ private DisplayMenu displayMenu =new DisplayMenu();
                     String usernamereg = scanner.next();
                     System.out.println("Password:");
                     String passwordreg = scanner.next();
-                    userController.creatNewUser(new User(usernamereg,passwordreg));break;
+                    userController.creatNewUser(new User(usernamereg,passwordreg));
+                    System.out.println("New account created successfully! ");break;
                 case 3:command=false;break;
                 default:
                     System.out.println("Invalid option!");
@@ -66,6 +68,7 @@ private DisplayMenu displayMenu =new DisplayMenu();
                 switch (menuItem) {
 
                     case 1:
+                        System.out.println("<<All possible flights>>");
                         flightController.getAll();
                         break;
                     case 2:
@@ -100,6 +103,7 @@ private DisplayMenu displayMenu =new DisplayMenu();
                             switch (press) {
                                 case 1:
                                     bookingController.makeBooking(tickets);
+                                    System.out.println("Data were saved!");
                                     break;
                                 case 2:
                                     command2 = false;
@@ -111,12 +115,14 @@ private DisplayMenu displayMenu =new DisplayMenu();
                         }
                         break;
                     case 4:
+                        System.out.println("Bookings: ");
                         bookingController.showMyBookings();
                         break;
                     case 5:
                         System.out.println("Booking ID: ");
                         int cancelID = scanner.nextInt();
                         bookingController.cancelBooking(cancelID);
+                        System.out.println("Booking was deleted...");
                         break;
                     case 6:
                         command1 = false;

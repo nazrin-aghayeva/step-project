@@ -22,6 +22,6 @@ public class Booking implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Booking ID:%-3d Flight ID:%-3d PassengerList:%-12s \n", booking_id, flightID, passengers);
+        return String.format("Booking ID:%-3d Flight ID:%-3d Passenger List:%-12s \n", booking_id, flightID, passengers);
     }
 }

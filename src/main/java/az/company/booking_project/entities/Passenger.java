@@ -13,6 +13,6 @@ public class Passenger implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Passenger nameSurname %s", nameSurname);
+        return String.format("%s", nameSurname);
     }
 }

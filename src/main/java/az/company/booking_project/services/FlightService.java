@@ -18,14 +18,14 @@ public class FlightService {
         return flightDao.getAll();
     }
 
-    public List<String> filteredFlights(ArrivalCity to, LocalDateTime departure_time) throws IOException, ClassNotFoundException {
-        return flightDao.getAll().stream().filter(
-                f -> to.equals(f.getTo()) &&
-                       departure_time.equals(f.getDate())
-        )
-                .map(Flight::toString).collect(Collectors.toList());
-
-    }
+//    public List<String> filteredFlights(ArrivalCity to, LocalDateTime departure_time) throws IOException, ClassNotFoundException {
+//        return flightDao.getAll().stream().filter(
+//                f -> to.equals(f.getTo()) &&
+//                       departure_time.equals(f.getDate())
+//        )
+//                .map(Flight::toString).collect(Collectors.toList());
+//
+//    }
 
     public Flight getById(int id) throws IOException, ClassNotFoundException {
         return flightDao.getById(id)
