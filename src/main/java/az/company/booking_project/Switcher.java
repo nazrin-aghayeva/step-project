@@ -118,11 +118,12 @@ private DisplayMenu displayMenu =new DisplayMenu();
                         System.out.println("Booking ID: ");
                         int cancelID = scanner.nextInt();
                         bookingController.cancelBooking(cancelID);
-                        System.out.println("Booking was deleted...");
                         break;
                     case 6:
                         command1 = false;
                         System.out.println("Thank you for using our application");
+                    case 7:
+                       userController.deleteUser();
                         break;
                     default:
                         System.out.println("Invalid option! Enter option from menu please");

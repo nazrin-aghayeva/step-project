@@ -7,11 +7,23 @@ import java.util.Objects;
 public class User implements Serializable {
     private String username;
     private String password;
+    private int user_id;
     private List<Booking> bookings;
+    int counter=0;
 
-    public User(String username, String password) {
+    public User( String username, String password) { ;
         this.username=username;
         this.password=password;
+    }
+
+//    public User(int user_id, String username, String password) {
+//        this.user_id= ++counter;
+//        this.username=username;
+//        this.password=password;
+//    }
+
+    public int getId() {
+        return user_id;
     }
 
     @Override

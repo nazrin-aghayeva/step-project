@@ -1,11 +1,13 @@
 package az.company.booking_project.Dao;
 
 
+import az.company.booking_project.entities.Booking;
 import az.company.booking_project.entities.Database;
 import az.company.booking_project.entities.User;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class UserDao implements Dao<User> {
     private Database database=new Database();
@@ -31,9 +33,14 @@ public class UserDao implements Dao<User> {
         return database.writeToFileUsers();
     }
 
-    @Override
-    public boolean delete(int id) {
-        return false;
-    }
+//    @Override
+//    public boolean delete(int id) {
+//        List<User> collect = database.getAllUsers()
+//                .stream()
+//                .filter(user -> user.getId() == id)
+//                .collect(Collectors.toList());
+//        database.getUserlist().removeAll(collect);
+//        return database.writeToFileUsers();
+//    }
 
 }

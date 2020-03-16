@@ -14,4 +14,8 @@ public class UserService {
     public void createNewUser(User user) {
         userDao.create(user);
     }
+
+    public void deleteUser(int user_id){
+        userDao.delete(user_id);
+    }
 }

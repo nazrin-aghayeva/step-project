@@ -13,4 +13,11 @@ public class UserController {
     public void creatNewUser(User user) {
         userService.createNewUser(user);
     }
+
+    public void deleteUser(int user_id){
+
+            userService.deleteUser(user_id);
+            System.out.println("Successfully logged out");
+
+    }
 }
