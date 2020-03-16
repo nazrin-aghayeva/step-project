@@ -54,10 +54,13 @@ public class BookingDao implements Dao<Booking> {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter flight ID: ");
         int id = scanner.nextInt();
-        for (int i = 0; i < tickets; i++) {
-            System.out.println("Enter Passenger Name and Surname : ");
+        for (int i = 1; i <=tickets; i++) {
+            System.out.println("Enter Passenger's Name: ");
             String name = scanner.next();
-            passengers.add(new Passenger(name));
+            System.out.println("Enter Passenger's Surname: ");
+            String surname = scanner.next();
+
+            passengers.add(new Passenger(name, surname));
         }
         return new Booking(id, passengers);
     }

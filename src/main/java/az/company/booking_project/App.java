@@ -6,9 +6,6 @@ public class App {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Switcher switcher = new Switcher();
       switcher.run();
-
-
-
     }
 
 }
