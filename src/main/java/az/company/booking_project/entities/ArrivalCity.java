@@ -41,11 +41,5 @@ public enum ArrivalCity {
         Random rand = new Random();
         return values()[rand.nextInt(values().length)];
     }
-    public static ArrivalCity get(String city){
-        List<ArrivalCity> airports = Arrays.stream(values())
-                .filter(airport -> city.equalsIgnoreCase(airport.toString()))
-                .collect(Collectors.toList());
-        return airports.get(0);
-    }
 
 }

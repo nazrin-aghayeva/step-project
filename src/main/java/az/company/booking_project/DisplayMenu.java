@@ -18,7 +18,7 @@ public class DisplayMenu {
         sb.append("|                         3. Search and Bookings                          |\n");
         sb.append("|                         4. My Bookings                                  |\n");
         sb.append("|                         5. Cancel a Booking                             |\n");
-        sb.append("|                         6. Exit                                         |\n");
+        sb.append("|                         6. End Session                                  |\n");
         sb.append("|_________________________________________________________________________|\n");
         sb.append(">>> Your selection: ");
         System.out.println(sb);

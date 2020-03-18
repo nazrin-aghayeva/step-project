@@ -9,10 +9,12 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Scanner;
 
 public class FlightController {
 
     private FlightService flightService = new FlightService();
+    Scanner scanner = new Scanner(System.in);
 
     public void getAll() throws IOException, ClassNotFoundException {
         flightService.getAll().forEach(System.out::println);
@@ -26,16 +28,13 @@ public class FlightController {
         }
     }
 
-    public void search(Flight flight) throws IOException, ClassNotFoundException {
-        try {
-            Flight search = flightService.search(flight);
-            System.out.println(search.toString());
-        } catch (Exception e) {
-            System.out.println("This Flight hasn't found");
-        }
-
+    public void GettAllFlights() throws IOException, ClassNotFoundException {
+        System.out.println("<<All possible flights>>");
+        getAll();
     }
-//public List<String> filteredFlights(ArrivalCity to, LocalDateTime departure_time) throws IOException, ClassNotFoundException {
-//    return flightService.filteredFlights(to, departure_time);
-//}
+public void GetFlightsById() throws IOException, ClassNotFoundException {
+    System.out.print("Please enter ID of flight: ");
+    int id = scanner.nextInt();
+    getById(id);
+}
 }

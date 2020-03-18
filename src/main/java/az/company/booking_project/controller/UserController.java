@@ -1,15 +1,19 @@
 package az.company.booking_project.controller;
 
 
+import az.company.booking_project.Validator;
 import az.company.booking_project.entities.User;
-import az.company.booking_project.services.Console;
 import az.company.booking_project.services.UserService;
 
-import java.util.InputMismatchException;
+import java.util.Optional;
 import java.util.Scanner;
+
+import static az.company.booking_project.Validator.checkPassword;
 
 public class UserController {
     private UserService userService =new UserService();
+
+
     public void getUser(User user) {
         userService.getUser(user);
     }
@@ -18,15 +22,17 @@ public class UserController {
 
     public void SignUp() {
         System.out.println("Username:");
-        String usernameRegist = scanner.next();
-        System.out.println("Password:");
-        String passwordRegist= scanner.next();
-        if (!userService.createNewUser(usernameRegist, passwordRegist)) {
-            System.out.println("Someone else has already taken this one.");
-            return;
+        String usernamereg = scanner.next();
+        Optional<String> passwordreg = Optional.empty();
+        while((!passwordreg.isPresent()) || !checkPassword(passwordreg.get())){
+            System.out.println("Please, enter your password: (Password must consist of capital,small letters and numbers between [0:9] and symbols) ");
+            passwordreg =Optional.of(scanner.next());
+                  }
+        if (!userService.createNewUser(usernamereg, passwordreg.get())) {
+            System.out.println("Someone else has already taken this username.");
         }
-        System.out.println("New account created successfully! ");
-    }
+        else{System.out.println("New account created successfully! ");
+    }}
 
     public void LogIn(){
 

@@ -23,6 +23,15 @@ public class BookingController {
         bookingService.makeBooking(tickets);
 
     }
+    public void search(Flight flight) throws IOException, ClassNotFoundException {
+        try {
+            Flight search = flightService.search(flight);
+            System.out.println(search.toString());
+        } catch (Exception e) {
+            System.out.println("This Flight hasn't found");
+        }
+
+    }
 
     public void showMyBookings() {
         try {
@@ -54,13 +63,13 @@ public class BookingController {
             String date = scanner.next();
             System.out.println("Please enter number of tickets:");
             int tickets = scanner.nextInt();
-            flightService.search(new Flight(ArrivalCity.valueOf(city), LocalDate.parse(date, formatter).atStartOfDay()));
+            search(new Flight(ArrivalCity.valueOf(city), LocalDate.parse(date, formatter).atStartOfDay()));
             while (command2) {
                 displayMenu.book();
                 String press = scanner.next();
                 switch (press) {
                     case "1":
-                        bookingService.makeBooking(tickets);
+                       makeBooking(tickets);
                         System.out.println("Your booking was saved!");
                         break;
                     case "2":
@@ -76,5 +85,14 @@ public class BookingController {
             System.out.println("Date format is not right!");
             command2 = false;
             }
+    }
+    public void ShowMadeBookings(){
+        System.out.println("Bookings: ");
+        showMyBookings();
+    }
+    public void CancelBookings(){
+        System.out.println("Booking ID: ");
+        int cancelID = scanner.nextInt();
+        cancelBooking(cancelID);
     }
 }
