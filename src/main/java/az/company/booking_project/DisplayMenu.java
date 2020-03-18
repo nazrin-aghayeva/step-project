@@ -6,9 +6,6 @@ import az.company.booking_project.controller.FlightController;
 import az.company.booking_project.controller.UserController;
 
 public class DisplayMenu {
-    private FlightController flightController = new FlightController();
-    private BookingController bookingController = new BookingController();
-    private UserController userController = new UserController();
 
     void user() {
         StringBuilder sb = new StringBuilder();
@@ -27,7 +24,7 @@ public class DisplayMenu {
         System.out.println(sb);
     }
 
-    void book() {
+    public void book() {
         StringBuilder sb2 = new StringBuilder();
         sb2.append(" _________________________________________________________________________ \n");
         sb2.append("|                        FLIGHT RESERVATION SYSTEM                        |\n");

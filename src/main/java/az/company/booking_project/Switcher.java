@@ -16,10 +16,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Switcher {
-private DisplayMenu displayMenu =new DisplayMenu();
     private FlightController flightController = new FlightController();
     private BookingController bookingController = new BookingController();
     private UserController userController = new UserController();
+    private DisplayMenu displayMenu =new DisplayMenu();
+
 
     public void run() throws IOException, ClassNotFoundException {
         Flight.TimeTable();
@@ -78,39 +79,37 @@ private DisplayMenu displayMenu =new DisplayMenu();
                         flightController.getById(id);
                         break;
                     case 3:
-                        boolean command2 = true;
+                        boolean command2=false;
                         try {
-                            System.out.println("Please enter arrival city:");
-                            String city = scanner.next().toUpperCase();
-                            System.out.println("Please enter arrival date (mm/dd/yyyy):");
-                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
-                            String date= scanner.next();
-                            System.out.println("Please enter number of tickets:");
-                            int tickets = scanner.nextInt();
-                            flightController.search(new Flight(ArrivalCity.valueOf(city),LocalDate.parse(date, formatter).atStartOfDay()));
-                            while (command2) {
-                                displayMenu.book();
-                                String press = scanner.next();
-                                switch (press) {
-                                    case "1":
-                                        bookingController.makeBooking(tickets);
-                                        System.out.println("Your booking was saved!");
-                                        break;
-                                    case "2":
-                                        command2 = false;
-                                        break;
-                                    default:
-                                        System.out.println("Invalid option! Enter option from menu please");
-                                        break;
-                                }
-                            }
+                            bookingController.SearchBooking();
+//                            System.out.println("Please enter arrival city:");
+//                            String city = scanner.next().toUpperCase();
+//                            System.out.println("Please enter arrival date (mm/dd/yyyy):");
+//                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+//                            String date= scanner.next();
+//                            System.out.println("Please enter number of tickets:");
+//                            int tickets = scanner.nextInt();
+//                            flightController.search(new Flight(ArrivalCity.valueOf(city),LocalDate.parse(date, formatter).atStartOfDay()));
+//                            while (command2) {
+//                                displayMenu.book();
+//                                String press = scanner.next();
+//                                switch (press) {
+//                                    case "1":
+//                                        bookingController.makeBooking(tickets);
+//                                        System.out.println("Your booking was saved!");
+//                                        break;
+//                                    case "2":
+//                                        command2 = false;
+//                                        break;
+//                                    default:
+//                                        System.out.println("Invalid option! Enter option from menu please");
+//                                        break;
+//                                }
+//                            }
                             break;
-                        } catch (InputMismatchException im) {
-                            System.out.println("Something went wrong");
-                            command2 = false;
                         }
-                        catch (Exception ex) {
-                            System.out.println("Date format is not right!");
+                        catch (InputMismatchException im) {
+                            System.out.println("Something went wrong");
                             command2 = false;
                         }
 
