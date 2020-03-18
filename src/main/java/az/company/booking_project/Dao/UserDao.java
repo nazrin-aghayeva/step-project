@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class UserDao implements Dao<User> {
-    private Database database=new Database();
+    public Database database=new Database();
     @Override
     public Optional<User> getById(int id) {
         return Optional.empty();
@@ -18,7 +18,7 @@ public class UserDao implements Dao<User> {
 
     @Override
     public List<User> getAll() {
-        return null;
+        return database.getAllUsers();
     }
 
     @Override
@@ -33,14 +33,16 @@ public class UserDao implements Dao<User> {
         return database.writeToFileUsers();
     }
 
-//    @Override
-//    public boolean delete(int id) {
-//        List<User> collect = database.getAllUsers()
-//                .stream()
-//                .filter(user -> user.getId() == id)
-//                .collect(Collectors.toList());
-//        database.getUserlist().removeAll(collect);
-//        return database.writeToFileUsers();
-//    }
+    @Override
+    public boolean delete(int id) {
+        List<User> collect = database.getAllUsers()
+                .stream()
+                .filter(user -> user.getId() == id)
+                .collect(Collectors.toList());
+        database.getUserlist().removeAll(collect);
+        return database.writeToFileUsers();
+    }
+
+
 
 }

@@ -17,7 +17,7 @@ public class BookingDao implements Dao<Booking> {
     private Database database = new Database();
 
     @Override
-    public List<Booking> getAll() throws IOException, ClassNotFoundException {
+    public List<Booking> getAll() {
         return database.getAllBookings();
     }
 

@@ -32,28 +32,32 @@ private DisplayMenu displayMenu =new DisplayMenu();
             switch (menu0item) {
                 case 1:
                     try {
-                        System.out.println("Username:");
-                        String username = scanner.next();
-                        System.out.println("Password:");
-                        String password = scanner.next();
-                        userController.getUser(new User(username, password));
-                        System.out.println("You have successfully logged in");
+                        userController.LogIn();
                         command1=true;
                     }
-                    catch (InputMismatchException e){
-                        System.out.println("Invalid input! Please enter menu item!");
-                    }catch (Exception e) {
-                        System.out.println("User doesn't exist, please sign up");
-                        command1 = false;
+                    catch (Exception e){
+                        System.out.println("User doesn't exist");
+                        command1=false;
                     }
+//                    try {
+//                        System.out.println("Username:");
+//                        String username = scanner.next();
+//                        System.out.println("Password:");
+//                        String password = scanner.next();
+//                        userController.getUser(new User(username, password));
+//                        System.out.println("You have successfully logged in");
+//                        command1=true;
+//                    }
+//                    catch (InputMismatchException e){
+//                        System.out.println("Invalid input! Please enter menu item!");
+//                    }catch (Exception e) {
+//                        System.out.println("User doesn't exist, please sign up");
+//                        command1 = false;
+//                    }
                     break;
                 case 2:
-                    System.out.println("Username:");
-                    String usernamereg = scanner.next();
-                    System.out.println("Password:");
-                    String passwordreg = scanner.next();
-                    userController.creatNewUser(new User(usernamereg,passwordreg));
-                    System.out.println("New account created successfully! ");break;
+                    userController.SignUp();
+                    break;
                 case 3:command=false;break;
                 default:
                     System.out.println("Invalid option!");
@@ -120,11 +124,12 @@ private DisplayMenu displayMenu =new DisplayMenu();
                         bookingController.cancelBooking(cancelID);
                         break;
                     case 6:
+
+                        break;
+                    case 7:
                         command1 = false;
                         System.out.println("Thank you for using our application");
-                    case 7:
-                       userController.deleteUser();
-                        break;
+
                     default:
                         System.out.println("Invalid option! Enter option from menu please");
                         break;

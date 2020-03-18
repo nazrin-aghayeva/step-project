@@ -11,16 +11,27 @@ public class User implements Serializable {
     private List<Booking> bookings;
     int counter=0;
 
-    public User( String username, String password) { ;
+
+
+    public String getUsername() {
+        return username;
+    }
+
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public User( String username, String password) {
+        this.user_id= ++counter;
         this.username=username;
         this.password=password;
     }
-
-//    public User(int user_id, String username, String password) {
-//        this.user_id= ++counter;
-//        this.username=username;
-//        this.password=password;
-//    }
 
     public int getId() {
         return user_id;

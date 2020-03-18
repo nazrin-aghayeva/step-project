@@ -9,21 +9,42 @@ import java.util.List;
 
 public class Database implements Serializable {
 
-
-
-    public void setBookingList(List<Booking> bookingList) {
-        this.bookingList = bookingList;
-    }
-
+    private List<User> userList=new ArrayList<>();
     private List<Flight> flightList = new ArrayList<>();
     private List<Booking> bookingList = new ArrayList<>();
-    private List<User> userlist=new ArrayList<>();
 
-    public List<User> getUserlist() {
-        return userlist;
+
+    public boolean writeToFileUsers(){
+        try {
+            File userFile=new File("users.txt");
+            FileOutputStream fos=new FileOutputStream(userFile);
+            ObjectOutputStream oos=new ObjectOutputStream(fos);
+            oos.writeObject(userList);
+            oos.close();
+            fos.close();
+            return true;
+        }catch (IOException e) {
+            throw new FileException("File is not found");
+        }
     }
 
+    public List<User> readFromFileUsers()  {
+        try{
+            File userFile = new File("users.txt");
+            FileInputStream fis = new FileInputStream(userFile);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            userList = (List<User>) ois.readObject();
+            ois.close();
+            fis.close();}
+        catch (IOException e){
+            throw new FileException("File is not found");
+        }
+        catch (ClassNotFoundException ex){
+            throw new FileException("Class not found");
 
+        }
+        return userList;
+    }
 
     public List<Flight> readFromFileFlights()  {
         try{
@@ -39,6 +60,8 @@ public class Database implements Serializable {
         }
         return flightList;
     }
+
+
     public List<Booking> readFromFileMyBookings(){
         try{
             File file = new File("bookings.txt");
@@ -62,15 +85,21 @@ public class Database implements Serializable {
             oos.close();
             fos.close();
             return true;
+
         }
-        catch (IOException e) {
-            throw new FileException("File is not found");
-        }
+            catch (IOException e) {
+                throw new FileException("File is not found");
+            }
+
 //        }catch (Exception io){
 //            io.printStackTrace();
 //            System.out.println(io.getMessage());
 //            throw new RuntimeException();
 //        }
+    }
+
+    public List<User> getAllUsers() {
+        return readFromFileUsers();
     }
 
     public List<Flight> getAllFlights() {
@@ -84,7 +113,6 @@ public class Database implements Serializable {
     }
 
 
-
     public List<Booking> getBookingList() {
         return bookingList;
     }
@@ -93,33 +121,8 @@ public class Database implements Serializable {
         return flightList;
     }
 
-
-    public List<User> getAllUsers() {
-        return readFromFileUsers();
+    public List<User> getUserlist() {
+        return userList;
     }
 
-    private List<User> readFromFileUsers() {
-        try {
-            File file =new File("users.txt");
-            FileInputStream fis=new FileInputStream(file);
-            ObjectInputStream ois=new ObjectInputStream(fis);
-            userlist= (List<User>) ois.readObject();
-        }catch (IOException | ClassNotFoundException e) {
-            throw new FileException("File is not found");
-        }
-        return userlist;
-    }
-    public boolean writeToFileUsers(){
-        try {
-            File file=new File("users.txt");
-            FileOutputStream fos=new FileOutputStream(file);
-            ObjectOutputStream oos=new ObjectOutputStream(fos);
-            oos.writeObject(userlist);
-            oos.close();
-            fos.close();
-            return true;
-        }catch (IOException e) {
-            throw new FileException("File is not found");
-        }
-    }
 }
