@@ -1,9 +1,6 @@
 package az.company.booking_project.entities;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public enum ArrivalCity {
     BAKU("GYD"),
@@ -37,9 +34,11 @@ public enum ArrivalCity {
         return code;
     }
 
-    public static ArrivalCity getRandomCity() {
-        Random rand = new Random();
-        return values()[rand.nextInt(values().length)];
+private static final List<ArrivalCity> VALUES = new ArrayList<>(Arrays.asList(ArrivalCity.values()));
+
+    public static ArrivalCity getRandomCity()  {
+        Collections.shuffle(VALUES);
+        return VALUES.remove(0);
     }
 
 }
