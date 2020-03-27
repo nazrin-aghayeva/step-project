@@ -47,10 +47,11 @@ public class Flight implements Serializable {
                     Airline.getRandomCode()+(int)(Math.random()*100),
                     DepartureCity.KIEV,
                     ArrivalCity.getRandomCity(),
-                    (int) (Math.random() * 100),
-                    LocalDateTime.of(LocalDate.now(),LocalTime.of(random.nextInt(24), (random.nextInt(60)/30)*30)),
-                    LocalDateTime.of(LocalDate.now(),LocalTime.of(random.nextInt(24), (random.nextInt(60)/30)*30)).plusHours(ThreadLocalRandom.current().nextInt(2, 6))
-                    );
+                    (int) (Math.random() * 200),
+                    LocalDateTime.of(LocalDate.now(),LocalTime.now()).plusMinutes(random.nextInt(1440)),
+                    LocalDateTime.of(LocalDate.now(),LocalTime.now()).plusMinutes(random.nextInt(1440)).plusHours(ThreadLocalRandom.current().nextInt(2,23)).plusMinutes(ThreadLocalRandom.current().nextInt(1440))
+            );
+
             flights.add(flight);
         }
         writeToFile(flights);
