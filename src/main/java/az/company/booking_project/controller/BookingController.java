@@ -1,7 +1,7 @@
 package az.company.booking_project.controller;
 
 import az.company.booking_project.DisplayMenu;
-import az.company.booking_project.Exceptions.BookingException;
+import az.company.booking_project.exceptions.BookingException;
 import az.company.booking_project.entities.ArrivalCity;
 import az.company.booking_project.entities.Flight;
 import az.company.booking_project.services.BookingService;
@@ -38,7 +38,7 @@ public class BookingController {
             bookingService.showMyBookings().forEach(System.out::println);
         }
         catch ( IOException | ClassNotFoundException e){
-            throw new BookingException("Booking is not found please check that you made booking");
+            throw new BookingException("Something went wrong!");
         }
     }
 
@@ -48,7 +48,7 @@ public class BookingController {
             System.out.println("Booking was deleted.");
         }
         catch (IOException | ClassNotFoundException e){
-            throw new BookingException("Booking is not found please enter right ID to cancel booking!" );
+            throw new BookingException("Something went wrong!");
         }
     }
 
@@ -87,12 +87,23 @@ public class BookingController {
             }
     }
     public void ShowMadeBookings(){
-        System.out.println("Bookings: ");
-        showMyBookings();
+        try {
+            System.out.println("Bookings: ");
+            showMyBookings();
+        }
+        catch (InputMismatchException ex){
+            System.out.println("enter valid data");
+        }
     }
     public void CancelBookings(){
-        System.out.println("Booking ID: ");
-        int cancelID = scanner.nextInt();
-        cancelBooking(cancelID);
+        try {
+            System.out.println("Booking ID: ");
+            int cancelID = scanner.nextInt();
+            cancelBooking(cancelID);
+        }
+        catch (InputMismatchException ex){
+            System.out.println("enter valid data");
+        }
+
     }
 }

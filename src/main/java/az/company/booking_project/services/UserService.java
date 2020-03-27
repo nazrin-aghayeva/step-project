@@ -1,9 +1,10 @@
 package az.company.booking_project.services;
 
 
-import az.company.booking_project.Dao.UserDao;
+import az.company.booking_project.dao.UserDao;
 import az.company.booking_project.entities.User;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -12,8 +13,8 @@ public class UserService {
 
 
 
-    public User getUser(User user) {
-        return userDao.get(user).orElseThrow(()->new IllegalArgumentException("User hasn't found"));
+    public Optional<User> getUser(User user) {
+        return userDao.get(user);
     }
 
     public boolean createNewUser(String username, String password) {

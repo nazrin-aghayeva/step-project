@@ -4,6 +4,7 @@ package az.company.booking_project;
 import az.company.booking_project.controller.BookingController;
 import az.company.booking_project.controller.FlightController;
 import az.company.booking_project.controller.UserController;
+import az.company.booking_project.dao.UserDao;
 import az.company.booking_project.entities.ArrivalCity;
 import az.company.booking_project.entities.Flight;
 import az.company.booking_project.entities.User;
@@ -16,10 +17,12 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Switcher {
-    private FlightController flightController = new FlightController();
-    private BookingController bookingController = new BookingController();
-    private UserController userController = new UserController();
-    private DisplayMenu displayMenu = new DisplayMenu();
+    private FlightController flightController  =new FlightController();   ;
+    private BookingController bookingController= new BookingController();  ;
+    private UserController userController   =  new UserController();
+    UserDao userDao= new UserDao();
+    private DisplayMenu displayMenu  = new DisplayMenu();
+
 
 
     public void run() throws IOException, ClassNotFoundException {
@@ -36,10 +39,9 @@ public class Switcher {
                         userController.LogIn();
                         command1 = true;
                     } catch (Exception e) {
-                        System.out.println("User doesn't exist");
+                        System.out.println("User doesn't exist, please sign up");
                         command1 = false;
                     }
-//
                     break;
                 case 2:
                     userController.SignUp();

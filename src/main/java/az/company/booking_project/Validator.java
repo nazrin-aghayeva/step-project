@@ -26,7 +26,7 @@ public class Validator {
 
     public static  boolean Symbol(char c) {
 
-        return c == ')' ||c == '(' || c == '$' || c=='&' || c=='*' ;
+        return c == ')' ||c == '(' || c == '$' || c=='&' || c=='*' || c=='!' ;
     }
 
     public static boolean SmallLetters(String str){

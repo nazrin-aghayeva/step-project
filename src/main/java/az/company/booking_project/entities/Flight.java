@@ -39,16 +39,6 @@ public class Flight implements Serializable {
          this.arrival_time=arrival_time;
     }
 
-//    public Flight(int id,Airline airline,String flightNo, DepartureCity from, ArrivalCity to, int empty_seats, LocalDateTime departure_time, LocalDateTime arrival_time) {
-//        this.id = id;
-//        this.airline=airline;
-//        this.flightNo=flightNo;
-//        this.from = from;
-//        this.to = to;
-//        this.departure_time= departure_time;
-//        this.empty_seats = empty_seats;
-//    }
-
     public static void TimeTable() throws IOException {
         for (int i = 0; i < 20; i++) {
             Flight flight = new Flight(
@@ -91,6 +81,9 @@ public class Flight implements Serializable {
         LocalDate dateFromDateTime=arrival_time.toLocalDate();
        return dateFromDateTime;
     }
+    public void remained_seats(int tickets){
+        System.out.println( empty_seats-tickets);
+    }
 
     public ArrivalCity getTo() {
         return to;
@@ -101,7 +94,13 @@ public class Flight implements Serializable {
         this.to=to;
         this.arrival_time=arrival_time;
     }
-
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Flight flight = (Flight) o;
+        return id == flight.id;
+    }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

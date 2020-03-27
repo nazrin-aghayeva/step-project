@@ -1,6 +1,6 @@
 package az.company.booking_project.entities;
 
-import az.company.booking_project.Exceptions.FileException;
+import az.company.booking_project.exceptions.FileException;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -44,6 +44,21 @@ public class Database implements Serializable {
 
         }
         return userList;
+    }
+
+    public boolean writeToFile1(){
+        try {
+            File file = new File("flights.txt");
+            FileOutputStream fos = new FileOutputStream(file);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(flightList);
+            oos.close();
+            fos.close();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("File did't find");
+        }
     }
 
     public List<Flight> readFromFileFlights()  {

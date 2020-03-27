@@ -1,4 +1,4 @@
-package az.company.booking_project.Exceptions;
+package az.company.booking_project.exceptions;
 
 public class FlightException extends RuntimeException{
     public FlightException(String message) {

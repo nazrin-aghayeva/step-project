@@ -1,4 +1,4 @@
-package az.company.booking_project.Dao;
+package az.company.booking_project.dao;
 
 import java.io.IOException;
 import java.util.List;

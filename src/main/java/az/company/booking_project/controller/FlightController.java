@@ -8,6 +8,7 @@ import az.company.booking_project.services.FlightService;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,8 +34,13 @@ public class FlightController {
         getAll();
     }
 public void GetFlightsById() throws IOException, ClassNotFoundException {
-    System.out.print("Please enter ID of flight: ");
-    int id = scanner.nextInt();
-    getById(id);
+        try {
+            System.out.print("Please enter ID of flight: ");
+            int id = scanner.nextInt();
+            getById(id);
+        }
+        catch (InputMismatchException ex){
+            System.out.println("enter valid data");
+        }
 }
 }

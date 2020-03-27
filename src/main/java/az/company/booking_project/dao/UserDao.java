@@ -1,19 +1,24 @@
-package az.company.booking_project.Dao;
+package az.company.booking_project.dao;
 
 
-import az.company.booking_project.entities.Booking;
 import az.company.booking_project.entities.Database;
+import az.company.booking_project.entities.Flight;
 import az.company.booking_project.entities.User;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class UserDao implements Dao<User> {
     public Database database=new Database();
+
     @Override
-    public Optional<User> getById(int id) {
-        return Optional.empty();
+    public Optional<User> getById(int id) throws IOException, ClassNotFoundException {
+        return database.getAllUsers()
+                .stream()
+                .filter(user -> user.getId() == id)
+                .findAny();
     }
 
     @Override

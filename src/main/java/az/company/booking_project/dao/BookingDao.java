@@ -1,9 +1,10 @@
-package az.company.booking_project.Dao;
+package az.company.booking_project.dao;
 
 
 import az.company.booking_project.entities.Booking;
 import az.company.booking_project.entities.Database;
 import az.company.booking_project.entities.Passenger;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,7 +29,10 @@ public class BookingDao implements Dao<Booking> {
 
     @Override
     public Optional<Booking> getById(int id) {
-        return Optional.empty();
+        return database.getBookingList()
+                .stream()
+                .filter(booking -> booking.getId() == id)
+                .findFirst();
     }
 
     @Override
@@ -52,12 +56,12 @@ public class BookingDao implements Dao<Booking> {
     public Booking makeBooking(int tickets) {
         List<Passenger> passengers = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter flight ID: ");
+        System.out.println("Enter flight ID:");
         int id = scanner.nextInt();
         for (int i = 1; i <=tickets; i++) {
-            System.out.println("Enter Passenger's Name: ");
+            System.out.println("Enter Passenger's Name:");
             String name = scanner.next();
-            System.out.println("Enter Passenger's Surname: ");
+            System.out.println("Enter Passenger's Surname:");
             String surname = scanner.next();
 
             passengers.add(new Passenger(name, surname));
