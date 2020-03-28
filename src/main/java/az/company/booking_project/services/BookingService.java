@@ -31,8 +31,8 @@ public class BookingService {
     public void cancelBooking(int cancelID) throws IOException, ClassNotFoundException {
         bookingDao.delete(cancelID);
     }
-    public boolean createBooking(int flight_id, List<Passenger> passenger) {
-        bookingDao.create(new Booking(flight_id, passenger));
+    public boolean createBooking(User user,int flight_id, List<Passenger> passenger) {
+        bookingDao.create(new Booking(user,flight_id, passenger));
        return database.writeToFileBooking();
     }
 }

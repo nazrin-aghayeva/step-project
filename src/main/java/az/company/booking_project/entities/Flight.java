@@ -45,7 +45,7 @@ public class Flight implements Serializable {
                     ++count,
                     Airline.getRandomAirline(),
                     Airline.getRandomCode()+(int)(Math.random()*100),
-                    DepartureCity.KIEV,
+                    DepartureCity.getRandomCity(),
                     ArrivalCity.getRandomCity(),
                     (int) (Math.random() * 200),
                     LocalDateTime.of(LocalDate.now(),LocalTime.now()).plusMinutes(random.nextInt(1440)),

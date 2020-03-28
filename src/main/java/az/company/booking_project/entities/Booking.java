@@ -9,7 +9,7 @@ public class Booking implements Serializable {
     private List<Passenger> passengers;
     static int count=0;
 
-    public Booking(int flightID, List<Passenger> passengers) {
+    public Booking( int flightID, List<Passenger> passengers) {
         this.booking_id = ++count;
         this.flightID = flightID;
         this.passengers = passengers;
