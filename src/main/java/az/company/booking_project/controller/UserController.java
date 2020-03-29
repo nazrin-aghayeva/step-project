@@ -11,14 +11,7 @@ import static az.company.booking_project.Validator.checkPassword;
 
 public class UserController {
     private UserService userService =new UserService();
-    private boolean isUserActivated;
 
-    public boolean isUserActivated() {
-        return isUserActivated;
-    }
-    public void setUserActivated(boolean userActivated) {
-        isUserActivated = userActivated;
-    }
 
     public void getUser(User user) {
         userService.getUser(user);
@@ -55,15 +48,17 @@ public class UserController {
             String username = scanner.next();
             System.out.println("Password:");
             String password = scanner.next();
-            getUser(new User(username,password));
-            System.out.println("You have successfully logged in");
+            if (!userService.check(username)) {
+                getUser(new User(username, password));
+                System.out.println("You have successfully logged in");
+            }
+            else {
+                System.out.println("there is no such user");
+            }
         }
         catch (InputMismatchException ex){
             System.out.println("Enter valid data");
         }
 
-    }
-    public void LogOut(){
-        setUserActivated(false);
     }
 }

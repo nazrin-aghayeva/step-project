@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 public class UserService {
     private UserDao userDao =new UserDao();
-    Database database=new Database();
 
 
     public Optional<User> getUser(User user) {
@@ -31,7 +30,9 @@ public class UserService {
         }
         return !userNameExists;
     }
-
+    public boolean check(String username) {
+        return !userNameExists(username);
+    }
     private boolean userNameExists(String username) {
         try {
              userDao.getAll().stream()
