@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public class BookingService {
     private BookingDao bookingDao=new BookingDao();
-    Database database;
+    Database database= new Database();
     Flight flight;
 
     public boolean makeBooking(int tickets ) {
@@ -28,7 +28,8 @@ public class BookingService {
     public void cancelBooking(int cancelID) throws IOException, ClassNotFoundException {
         bookingDao.delete(cancelID);
     }
-    public void createBooking(int flight_id, List<Passenger> passenger) {
+    public boolean createBooking(int flight_id, List<Passenger> passenger) {
         bookingDao.create(new Booking(flight_id, passenger));
+        return database.writeToFileBooking();
     }
 }
