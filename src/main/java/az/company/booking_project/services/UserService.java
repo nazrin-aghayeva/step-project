@@ -2,6 +2,7 @@ package az.company.booking_project.services;
 
 
 import az.company.booking_project.dao.UserDao;
+import az.company.booking_project.entities.Database;
 import az.company.booking_project.entities.User;
 
 import java.util.Optional;
@@ -10,18 +11,19 @@ import java.util.stream.Collectors;
 
 public class UserService {
     private UserDao userDao =new UserDao();
-
+    Database database=new Database();
 
 
     public Optional<User> getUser(User user) {
-        return userDao.getAll().stream()
-                .filter(x->x.getUsername().equalsIgnoreCase(user.getUsername())&& x.getPassword().equals(user.getPassword()))
-                .findAny();
+        return userDao.get(user);
     }
+
+    //for test
     public Optional<User> get(String username, String password) {
         return userDao.getAll().stream().filter(x->x.getUsername().equals(username)&& x.getPassword().equals(password)).findAny();
 
     }
+    //
     public boolean createNewUser(String username, String password) {
         boolean userNameExists = userNameExists(username);
         if (!userNameExists) {
