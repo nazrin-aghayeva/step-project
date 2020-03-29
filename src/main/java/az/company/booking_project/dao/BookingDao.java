@@ -55,7 +55,6 @@ public class BookingDao implements Dao<Booking> {
     public Booking makeBooking(int tickets) {
         List<Passenger> passengers = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        int user1=booking.getUser_id();
         System.out.println("Enter flight ID:");
         int id = scanner.nextInt();
         for (int i = 1; i <=tickets; i++) {
@@ -66,6 +65,6 @@ public class BookingDao implements Dao<Booking> {
 
             passengers.add(new Passenger(name, surname));
         }
-        return new Booking(user1,id, passengers);
+        return new Booking(id, passengers);
     }
 }
