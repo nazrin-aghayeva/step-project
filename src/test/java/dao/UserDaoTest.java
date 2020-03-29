@@ -5,6 +5,8 @@ import az.company.booking_project.entities.User;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,7 +16,9 @@ class UserDaoTest extends UserDao {
     void findAll() {
         User user= new User("nazrinichee", "aA112233!");
         create(user);
-        assertEquals(user,getAll());
+        ArrayList<User> users= new ArrayList<>();
+        users.add(user);
+        assertEquals(users,getAll());
     }
 
 

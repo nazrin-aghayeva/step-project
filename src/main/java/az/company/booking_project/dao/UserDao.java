@@ -28,7 +28,7 @@ public class UserDao implements Dao<User> {
 
     @Override
     public Optional<User> get(User user) {
-        return database.getAllUsers().stream().filter(x->x.equals(user)).findAny();
+        return database.getAllUsers().stream().filter(x->x.getUsername().equals(user.getUsername())&& x.getPassword().equals(user.getPassword())).findAny();
 
     }
 

@@ -13,8 +13,11 @@ public class UserService {
 
 
 
-    public Optional<User> getUser(User user) {
-        return userDao.get(user);
+    public Optional<User> getUser(String username, String password) {
+        return userDao.getAll().stream()
+                .filter(user -> user.getPassword().equals(password))
+                .filter(user -> user.getUsername().equalsIgnoreCase(username))
+                .findFirst();
     }
 
     public boolean createNewUser(String username, String password) {

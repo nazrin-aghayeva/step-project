@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Step-Project12" />
         <module name="Step-Project" />
         <module name="Step-ProjectZeyNaz" />
-        <module name="StepProjectBoooking" />
         <module name="Step-Project777" />
+        <module name="Step-Project12" />
+        <module name="StepProjectBoooking" />
       </profile>
     </annotationProcessing>
   </component>

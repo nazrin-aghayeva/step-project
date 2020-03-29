@@ -4,8 +4,6 @@ package az.company.booking_project.dao;
 import az.company.booking_project.entities.Booking;
 import az.company.booking_project.entities.Database;
 import az.company.booking_project.entities.Passenger;
-
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +14,7 @@ import java.util.stream.Collectors;
 public class BookingDao implements Dao<Booking> {
 
     private Database database = new Database();
+    private Booking booking;
 
     @Override
     public List<Booking> getAll() {
@@ -56,6 +55,7 @@ public class BookingDao implements Dao<Booking> {
     public Booking makeBooking(int tickets) {
         List<Passenger> passengers = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
+        int user1=booking.getUser_id();
         System.out.println("Enter flight ID:");
         int id = scanner.nextInt();
         for (int i = 1; i <=tickets; i++) {
@@ -66,6 +66,6 @@ public class BookingDao implements Dao<Booking> {
 
             passengers.add(new Passenger(name, surname));
         }
-        return new Booking(id, passengers);
+        return new Booking(user1,id, passengers);
     }
 }

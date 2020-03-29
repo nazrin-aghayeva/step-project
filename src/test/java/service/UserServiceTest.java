@@ -12,21 +12,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserServiceTest extends UserService {
 @Test
     public void getUser1() {
-        User user1 = new User("nazriniche",
-                "Aa112233!");
-        createNewUser("nazrinich",
-                "Aa112233!");
-
-        assertEquals(Optional.of(user1), getUser(user1));
+      User user= new User("nazriniche","Aa112233!");
+    createNewUser("nazriniche",
+            "Aa112233!");
+        assertEquals(Optional.of(user), getUser("nazriniche",
+                "Aa112233!"));
     }
-
     @Test
-    void createNewUser() {
-        User user= new User(
-                "nazriniche",
-                "Aa112233!"
-        );
-        assertTrue(createNewUser("nazrinichkl", "Aa112233!"));
+    void add2() {
+        assertFalse(createNewUser("nazrinichee", "aA112233!"));
     }
 
 
