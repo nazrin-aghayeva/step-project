@@ -15,7 +15,7 @@ class UserServiceTest extends UserService {
       User user= new User("nazriniche","Aa112233!");
     createNewUser("nazriniche",
             "Aa112233!");
-        assertEquals(Optional.of(user), getUser("nazriniche",
+        assertEquals(Optional.of(user), get("nazriniche",
                 "Aa112233!"));
     }
     @Test

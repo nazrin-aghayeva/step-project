@@ -13,13 +13,15 @@ public class UserService {
 
 
 
-    public Optional<User> getUser(String username, String password) {
+    public Optional<User> getUser(User user) {
         return userDao.getAll().stream()
-                .filter(user -> user.getPassword().equals(password))
-                .filter(user -> user.getUsername().equalsIgnoreCase(username))
-                .findFirst();
+                .filter(x->x.getUsername().equalsIgnoreCase(user.getUsername())&& x.getPassword().equals(user.getPassword()))
+                .findAny();
     }
+    public Optional<User> get(String username, String password) {
+        return userDao.getAll().stream().filter(x->x.getUsername().equals(username)&& x.getPassword().equals(password)).findAny();
 
+    }
     public boolean createNewUser(String username, String password) {
         boolean userNameExists = userNameExists(username);
         if (!userNameExists) {

@@ -20,8 +20,8 @@ public class UserController {
         isUserActivated = userActivated;
     }
 
-    public void getUser(String username, String password) {
-        userService.getUser(username,password);
+    public void getUser(User user) {
+        userService.getUser(user);
     }
 
     Scanner scanner = new Scanner(System.in);
@@ -55,7 +55,7 @@ public class UserController {
             String username = scanner.next();
             System.out.println("Password:");
             String password = scanner.next();
-            getUser(username,password);
+            getUser(new User(username,password));
             System.out.println("You have successfully logged in");
         }
         catch (InputMismatchException ex){
